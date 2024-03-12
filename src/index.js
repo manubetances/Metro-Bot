@@ -19,17 +19,13 @@ botClient.on('ready', (client) => {
   console.log(`${client.user.username} is ready and online!`);
 });
 
-// Reply with Hey! if user says 'hello'
-botClient.on('messageCreate', (message) => {
-  // Check if user is a bot or not
-  if (message.author.bot) {
-    return;
-  };
+client.on('interactionCreate', (interaction) => {
+  if (!interaction.isChatInputCommand()) return;
 
-  if (message.content == 'hello') {
-    message.reply('Hey!')
+  if (interaction.commandName === 'Marco') {
+    interaction.reply('Polo!');
   }
-});
+})
 
 // Bot password or token
 botClient.login(
